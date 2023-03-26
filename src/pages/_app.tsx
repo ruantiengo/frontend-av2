@@ -1,6 +1,14 @@
-import '@/styles/globals.css'
-import type { AppProps } from 'next/app'
+import type { AppProps } from "next/app";
+import "../global.css";
+import "react-toastify/dist/ReactToastify.css";
 
+import { GlobalProvider } from "@/contexts/globalContext";
 export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <>
+      <GlobalProvider>
+        <Component {...pageProps} />
+      </GlobalProvider>
+    </>
+  );
 }

@@ -12,6 +12,11 @@ import RemovePessoaButton from "@/components/buttons/removePessoa";
 import { ToastContainer } from "react-toastify";
 import { GlobalContext, GlobalProvider } from "@/contexts/globalContext";
 import NavigationMenuDemo from "@/components/navigation";
+import AddEstadoButton from "@/components/buttons/addEstado";
+import RemoveEstadoButton from "@/components/buttons/removeEstado";
+import AddCidadeButton from "@/components/buttons/addCidade";
+import RemoveCidadeButton from "@/components/buttons/removeCidade";
+import { Cidade } from "@/services/cidadeService";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,32 +26,15 @@ interface IHome {
 export default function Home({}: IHome) {
   const columns = [
     {
-      Header: "Nome",
+      Header: "Cidade",
       accessor: "nome",
     },
     {
-      Header: "Complemento",
-      accessor: "complemento",
-    },
-    {
-      Header: "Número",
-      accessor: "numero",
-    },
-    {
-      Header: "Rua",
-      accessor: "rua",
-    },
-    {
-      Header: "Tipo Sanguíneo",
-      accessor: "tipoSanguineo.tipo",
-    },
-    {
-      Header: "Cidade",
-      accessor: "cidade.nome",
+      Header: "Estado",
+      accessor: "estadoSigla",
     },
   ];
-  const { pessoas } = useContext(GlobalContext);
-  console.log("Renderiza denoovo");
+  const { cidades } = useContext(GlobalContext);
 
   return (
     <Container>
@@ -64,11 +52,11 @@ export default function Home({}: IHome) {
       />
       <NavigationMenuDemo />
       <div style={{ display: "flex", gap: "2rem" }}>
-        <AddPessoaButton />
-        <RemovePessoaButton array={pessoas!} />
+        <AddCidadeButton />
+        <RemoveCidadeButton array={cidades!} />
       </div>
 
-      <Table columns={columns} data={pessoas!} />
+      <Table columns={columns} data={cidades!} />
     </Container>
   );
 }

@@ -12,6 +12,8 @@ import RemovePessoaButton from "@/components/buttons/removePessoa";
 import { ToastContainer } from "react-toastify";
 import { GlobalContext, GlobalProvider } from "@/contexts/globalContext";
 import NavigationMenuDemo from "@/components/navigation";
+import AddEstadoButton from "@/components/buttons/addEstado";
+import RemoveEstadoButton from "@/components/buttons/removeEstado";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,28 +27,11 @@ export default function Home({}: IHome) {
       accessor: "nome",
     },
     {
-      Header: "Complemento",
-      accessor: "complemento",
-    },
-    {
-      Header: "Número",
-      accessor: "numero",
-    },
-    {
-      Header: "Rua",
-      accessor: "rua",
-    },
-    {
-      Header: "Tipo Sanguíneo",
-      accessor: "tipoSanguineo.tipo",
-    },
-    {
-      Header: "Cidade",
-      accessor: "cidade.nome",
+      Header: "Sigla",
+      accessor: "sigla",
     },
   ];
-  const { pessoas } = useContext(GlobalContext);
-  console.log("Renderiza denoovo");
+  const { estados } = useContext(GlobalContext);
 
   return (
     <Container>
@@ -64,11 +49,11 @@ export default function Home({}: IHome) {
       />
       <NavigationMenuDemo />
       <div style={{ display: "flex", gap: "2rem" }}>
-        <AddPessoaButton />
-        <RemovePessoaButton array={pessoas!} />
+        <AddEstadoButton />
+        <RemoveEstadoButton array={estados!} />
       </div>
 
-      <Table columns={columns} data={pessoas!} />
+      <Table columns={columns} data={estados!} />
     </Container>
   );
 }
